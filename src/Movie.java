@@ -36,57 +36,46 @@ public class Movie
     {
         return title;
     }
-
     public String getCast()
     {
         return cast;
     }
-
     public String getDirector()
     {
         return director;
     }
-
     public String getTagline()
     {
         return tagline;
     }
-
     public String getKeywords()
     {
         return keywords;
     }
-
     public String getOverview()
     {
         return overview;
     }
-
     public int getRuntime()
     {
         return runtime;
     }
-
     public String getGenres()
     {
         return genres;
     }
-
     public double getUserRating()
     {
         return userRating;
     }
-
     public int getYear()
     {
         return year;
     }
-
     public int getRevenue()
     {
         return revenue;
     }
-
     public String toString()
     {
         return "Title: " + title + ", Tagline: " + tagline;

@@ -2,7 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class MovieCollection
 {
@@ -70,7 +72,7 @@ public class MovieCollection
             String movieTitle = movies.get(i).getTitle();
             movieTitle = movieTitle.toLowerCase();
 
-            if (movieTitle.indexOf(searchTerm) != -1)
+            if (movieTitle.contains(searchTerm))
             {
                 //add the Movie objest to the results list
                 results.add(movies.get(i));
@@ -130,28 +132,57 @@ public class MovieCollection
         System.out.println("Box office revenue: " + movie.getRevenue());
     }
 
-    private void searchCast()
-    {
+    private void searchCast(){
+        System.out.print("Enter the name of a cast member: ");
+        String searchTerm = scanner.nextLine();
+        searchTerm = searchTerm.toLowerCase();
+        // arraylist to hold search results
+        ArrayList<String> results = new ArrayList<String>(); // creates a list of strings to get a cast name of anyone who has a name in searchTerm
+        // search through ALL movies in collection
+        // iterates through each movie to find
+        for (Movie movie : movies) {
+            String[] movieTitle = movie.getCast().split("[|]");
+            for (String s : movieTitle) {
+                if (s.toLowerCase().contains(searchTerm) && !results.contains(s)) results.add(s);
+            }
+        }
+        for(int i = 0; i < results.size(); i ++){
+            System.out.println(i+1 + "." + results.get(i));
+        }
+        System.out.println("Which actor would you like to choose? (Choose a number from the list above)");
+        int itemInList = scanner.nextInt() - 1;
+        ArrayList<Movie> actorInMov = new ArrayList<Movie>();
+        for(Movie mov : movies){
+            if(mov.getCast().contains(results.get(itemInList))){
+                actorInMov.add(mov);
+            }
+        }
+        for(int i = 0; i < actorInMov.size(); i++){
+            System.out.println(i + 1 + "." + actorInMov.get(i).getTitle());
+        }
+        System.out.println("Which movie would you like to check? (Choose a number from the list above");
+        itemInList = scanner.nextInt();
+        displayMovieInfo(actorInMov.get(itemInList-1));
+        scanner.nextLine();
+    }
+
+    private void searchKeywords(){
+        System.out.println("Enter a Keyword search term: ");
+        String searchTerm = scanner.nextLine();
+        for(Movie mov : movies){
+            if(mov.getKeywords().toLowerCase().contains(searchTerm.toLowerCase()))
+        }
+    }
+
+    private void listGenres(){
 
     }
 
-    private void searchKeywords()
-    {
+    private void listHighestRated(){
 
     }
 
-    private void listGenres()
-    {
-
-    }
-
-    private void listHighestRated()
-    {
-
-    }
-
-    private void listHighestRevenue()
-    {
+    private void listHighestRevenue(){
 
     }
 
